@@ -6,7 +6,7 @@
   "display": "standalone",
   "orientation": "portrait",
   "scope": "/",
-  "start_url": "/.",
+  "start_url": "/PWA/index.html",
   "icons": [
     {
       "src": "icons/app-icon-96-96.png",

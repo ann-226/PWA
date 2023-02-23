@@ -1,7 +1,7 @@
 const staticCacheName = "s-app-v4";
 const dynamicCacheName = "d-app-v3";
 // список всех файлов нужных в cache
-const assetUrls = ["index.html", "/js/app.js", "/css/styles.css", "offline.html", "SofaroTovar.json"];
+const assetUrls = ["/PWA/index.html", "/PWA/js/app.js", "/PWA/css/styles.css", "/PWA/offline.html", "/PWA/SofaroTovar.json"];
 
 //  Кэширование:
 // Добавляем все статические файлы в cache  addAll()

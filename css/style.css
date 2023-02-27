@@ -1,0 +1,78 @@
+* {
+  font-family: "Calibri", sans-serif;
+  font-size: 15px;
+}
+body {
+  padding-top: 5px;
+}
+input.search {
+  /* max-width: 300px; */
+  margin-right: 15px;
+  width: 600px;
+}
+
+input {
+  height: 40px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.2);
+}
+.price_discount input {
+  width: 70px;
+}
+
+button.add,
+button.good_delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.2);
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.container {
+  background-color: #f8f8f8;
+  box-shadow: 0px 0px 9px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+.menu {
+  display: flex;
+  height: 30px;
+  justify-content: left;
+  align-items: center;
+  margin-top: 5px;
+}
+.price_title,
+.price_title span {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 15px;
+}
+th {
+  cursor: pointer;
+  padding: 2px;
+  text-align: center;
+}
+tr {
+  height: 15px;
+}
+td {
+  padding: 2px;
+  text-align: left;
+}
+.good,
+.price_good {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+mark {
+  background-color: aqua;
+  color: red;
+}

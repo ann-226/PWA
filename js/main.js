@@ -5,7 +5,7 @@ let visibilityIntervalPage = 5;
 let searchResult = [];
 window.addEventListener("DOMContentLoaded", updateData);
 const availableScreenHeight = window.screen.availHeight;
-alert("availableScreenHeight " + availableScreenHeight);
+//alert("availableScreenHeight " + availableScreenHeight);
 
 let input = document.querySelector("#input");
 input.oninput = elasticSearch;

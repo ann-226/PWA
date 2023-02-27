@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>PRICE LIST</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-xxl-12">
+          <div class="goods_box" id="goods">
+            <div class="menu">
+              <input id="input" class="search" placeholder="Поіск товара" />
+            </div>
+            <div class="table-responsive-sm">
+              <table class="goods table table-sm mt-2 table-bordered table-hover" id="table1">
+                <thead>
+                  <tr class="table-primary align-middle">
+                    <th data-type="string">Назва</th>
+                    <th data-type="number">Ціна, &#8372;</th>
+                    <th data-type="number">од</th>
+                  </tr>
+                </thead>
+                <tbody class="list">
+                  <!-- Строки с товарами -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination pagination-lg justify-content-center">
+        <ul></ul>
+      </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 let goods;
+let dateOfUpdate;
 let val = "";
 let rowOnPage = 9;
 let visibilityIntervalPage = 5;
@@ -8,20 +9,31 @@ window.addEventListener("DOMContentLoaded", updateData);
 let input = document.querySelector("#input");
 input.oninput = elasticSearch;
 
+const update = document.getElementById("dateUpdate");
+
+// ==========================
+
 async function updateData() {
   // console.log("Load price list from https://ann-226.github.io/PWA/SofaroTovar.json");
 
   try {
-    let response = await fetch("https://ann-226.github.io/PWA/SofaroTovar.json");
+    let response = await fetch(
+      "https://ann-226.github.io/PWA/SofaroTovar.json"
+    );
 
     if (response.ok) {
       const data = await response.json();
       goods = data.price;
+      dateOfUpdate = data.dateOfPrice;
+      document.getElementById("dateUpdate").innerHTML = dateOfUpdate;
 
-      console.log("from UpdateData, goods.length=" + goods.length);
       if (goods.length > 0) {
         updateList(goods, "", 0, rowOnPage);
-        pagination(1, visibilityIntervalPage, Math.ceil(goods.length / rowOnPage));
+        pagination(
+          1,
+          visibilityIntervalPage,
+          Math.ceil(goods.length / rowOnPage)
+        );
       }
     }
   } catch (error) {
@@ -74,30 +86,47 @@ function elasticSearch() {
   } else searchResult = goods;
   if (searchResult.length > 0) {
     updateList(searchResult, val, 0, rowOnPage);
-    pagination(1, visibilityIntervalPage, Math.ceil(searchResult.length / rowOnPage));
+    pagination(
+      1,
+      visibilityIntervalPage,
+      Math.ceil(searchResult.length / rowOnPage)
+    );
   }
 }
 
 function insertMark(row, pos, len) {
-  return row.slice(0, pos) + "<mark>" + row.slice(pos, pos + len) + "</mark>" + row.slice(pos + len);
+  return (
+    row.slice(0, pos) +
+    "<mark>" +
+    row.slice(pos, pos + len) +
+    "</mark>" +
+    row.slice(pos + len)
+  );
 }
 // pagination;
 function pagination(numActivePage, visibilityIntervalPage, pages) {
   let tpagination = document.querySelector(".pagination");
   tpagination.innerHTML = "";
-  let start = numActivePage - Math.floor(visibilityIntervalPage / 2) < 0 ? 0 : numActivePage - Math.floor(visibilityIntervalPage / 2);
+  let start =
+    numActivePage - Math.floor(visibilityIntervalPage / 2) < 0
+      ? 0
+      : numActivePage - Math.floor(visibilityIntervalPage / 2);
   let finish = start + visibilityIntervalPage;
 
   if (finish > pages) {
     finish = pages;
-    start = finish - visibilityIntervalPage < 0 ? 0 : finish - visibilityIntervalPage + 1;
+    start =
+      finish - visibilityIntervalPage < 0
+        ? 0
+        : finish - visibilityIntervalPage + 1;
   }
-
-  console.log("from pagination  start =" + start + " finish=" + finish + "  pages:" + pages);
 
   let disabled = "";
   if (start != 0) {
-    tpagination.insertAdjacentHTML("beforeend", ` <li class="page-item ${disabled}"><button class="page-link">1</button></li>  `);
+    tpagination.insertAdjacentHTML(
+      "beforeend",
+      ` <li class="page-item ${disabled}"><button class="page-link">1</button></li>  `
+    );
   }
 
   for (let i = start; i < finish; i++) {
@@ -105,12 +134,17 @@ function pagination(numActivePage, visibilityIntervalPage, pages) {
     tpagination.insertAdjacentHTML(
       "beforeend",
       `
-    <li class="page-item ${active}"><button class="page-link">${i + 1}</button></li>
+    <li class="page-item ${active}"><button class="page-link">${
+        i + 1
+      }</button></li>
     `
     );
   }
   if (finish != pages) {
-    tpagination.insertAdjacentHTML("beforeend", ` <li class="page-item "><button class="page-link">${pages}</button></li>  `);
+    tpagination.insertAdjacentHTML(
+      "beforeend",
+      ` <li class="page-item "><button class="page-link">${pages}</button></li>  `
+    );
   }
 }
 
@@ -119,20 +153,31 @@ function pagination(numActivePage, visibilityIntervalPage, pages) {
 document.querySelector(".pagination").addEventListener(
   "click",
   function (event) {
-    let selectedPage = event.target.closest(".page-item").firstElementChild.innerText;
+    let selectedPage =
+      event.target.closest(".page-item").firstElementChild.innerText;
     searchResult = searchResult.length == 0 ? goods : searchResult;
-    // console.log("Selected Page=" + selectedPage);
-    myFunction(searchResult, selectedPage, rowOnPage, val, visibilityIntervalPage);
+    myFunction(
+      searchResult,
+      selectedPage,
+      rowOnPage,
+      val,
+      visibilityIntervalPage
+    );
   },
   true
 );
 
-function myFunction(searchResult, selectedPage, rowOnPage, val, visibilityIntervalPage) {
+function myFunction(
+  searchResult,
+  selectedPage,
+  rowOnPage,
+  val,
+  visibilityIntervalPage
+) {
   rowStart = (selectedPage - 1) * rowOnPage;
   let pages = Math.ceil(searchResult.length / rowOnPage);
 
   updateList(searchResult, val, rowStart, rowOnPage);
-  console.log("from myFunction rowStart=" + rowStart + "   searchResult=" + searchResult.length + " rowOnPage:" + rowOnPage + " pages=" + pages);
 
   pagination(selectedPage, visibilityIntervalPage, pages);
 }
